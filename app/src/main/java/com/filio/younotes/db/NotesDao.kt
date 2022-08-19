@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.Flow
 interface NotesDao {
 
     @Insert
-    suspend fun insert(NotesItemDB: NoteItemDB)
+    suspend fun insert(notesItemDB: NoteItemDB)
 
     @Update
-    suspend fun update(NotesItemDB: NoteItemDB)
+    suspend fun update(notesItemDB: NoteItemDB)
 
     @Delete
-    suspend fun delete(NotesItemDB: NoteItemDB)
+    suspend fun delete(notesItemDB: NoteItemDB)
 
     @Query("SELECT * FROM 'notes-table'")
     fun fetchAllNotes(): Flow<List<NoteItemDB>>

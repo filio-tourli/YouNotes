@@ -5,6 +5,9 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
+/**
+ * We use this class to manually add room-support for these data types
+ * */
 object Converters {
 
     @TypeConverter
