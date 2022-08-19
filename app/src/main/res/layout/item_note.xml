@@ -7,7 +7,6 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="20dp"
     android:layout_marginEnd="8dp"
-    app:cardBackgroundColor="#f6f6f6"
     app:cardElevation="4dp"
     app:strokeWidth="0dp">
 
