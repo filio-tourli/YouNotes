@@ -45,6 +45,6 @@ class HomeFragment : Fragment() {
 
         binding.recNotes.adapter = adapter
 
-        adapter.submitList(MockData.getNoted())
+        adapter.submitList(MockData.getNotes(15, requireContext()))
     }
 }
