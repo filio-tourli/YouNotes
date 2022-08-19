@@ -41,7 +41,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleAdapter() = with(binding) {
-        val adapter = NotesAdapter {}
+        val adapter = NotesAdapter {
+            AddNoteDialogFragment.display(childFragmentManager, it)
+        }
 
         binding.recNotes.adapter = adapter
 

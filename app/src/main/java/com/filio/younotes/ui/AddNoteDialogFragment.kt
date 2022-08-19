@@ -9,6 +9,7 @@ import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.filio.younotes.R
+import com.filio.younotes.data.NoteItemUI
 import com.filio.younotes.databinding.ExampleDialogBinding
 
 
@@ -36,10 +37,6 @@ class AddNoteDialogFragment : DialogFragment() {
 
     /** The system calls this only when creating the layout in a dialog. */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // The only reason you might override this method when using onCreateView() is
-        // to modify any dialog characteristics. For example, the dialog includes a
-        // title by default, but your custom layout might not need it. So here you can
-        // remove the dialog title, but you must call the superclass to get the Dialog.
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
@@ -61,18 +58,39 @@ class AddNoteDialogFragment : DialogFragment() {
 
         binding.toolbar.setNavigationOnClickListener { dismiss() }
 
+        val note = arguments?.getParcelable<NoteItemUI>("note")
+
+        if (note == null) {
+            createNoteFlow()
+        } else {
+            readNoteFlow(note)
+        }
+
+
+    }
+
+    private fun createNoteFlow() {
         binding.toolbar.title = getString(R.string.add_note)
+    }
+
+    private fun readNoteFlow(note: NoteItemUI) {
+        binding.toolbar.title = note.title
+        binding.txtMessage.text = note.message
     }
 
     companion object {
 
         private const val TAG = "add_note_dialog"
 
-        fun display(fragmentManager: FragmentManager): AddNoteDialogFragment {
+        fun display(fragmentManager: FragmentManager, note: NoteItemUI? = null) {
             val exampleDialog = AddNoteDialogFragment()
+                .apply {
+                    arguments = Bundle().apply {
+                        putParcelable("note", note)
+                    }
+                }
+
             exampleDialog.show(fragmentManager, TAG)
-            return exampleDialog
         }
     }
-
 }
