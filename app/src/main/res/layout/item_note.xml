@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="20dp"
     android:layout_marginEnd="8dp"
-    app:cardBackgroundColor="?colorOnPrimarySurface"
-    app:cardElevation="8dp"
-    app:strokeColor="?colorPrimary">
+    app:cardBackgroundColor="#f6f6f6"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="25"
             tools:text="@tools:sample/lorem[50]" />
 
     </LinearLayout>

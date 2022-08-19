@@ -33,7 +33,7 @@ class NotesAdapter(val listener: (NoteItemUI) -> Unit) : ListAdapter<NoteItemUI,
 
         fun bind(item: NoteItemUI) = with(binding) {
             txtTitle.text = item.title
-            txtBody.text = item.message
+            txtBody.text = item.message + "..."
         }
     }
 
