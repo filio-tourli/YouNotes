@@ -5,12 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.filio.younotes.MockData
+import androidx.lifecycle.lifecycleScope
 import com.filio.younotes.R
+import com.filio.younotes.data.NoteItemUI
 import com.filio.younotes.databinding.FragmentFirstBinding
+import com.filio.younotes.db.NotesDao
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    @Inject lateinit var dao: NotesDao
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
@@ -47,6 +55,23 @@ class HomeFragment : Fragment() {
 
         binding.recNotes.adapter = adapter
 
-        adapter.submitList(MockData.getNotes(15, requireContext()))
+        lifecycleScope.launch {
+            dao.fetchAllNotes().collectLatest { notesItemDBList ->
+                /**
+                 * Convert list on NoteItemDB to list of NoteItemUI
+                 * */
+                val notesItemUIList = notesItemDBList.map {
+                    NoteItemUI(
+                        id = it.id,
+                        title = it.title,
+                        message = it.message,
+                        createdAt = it.createdAt,
+                        editedAt = it.editedAt
+                    )
+                }
+
+                adapter.submitList(notesItemUIList)
+            }
+        }
     }
 }
