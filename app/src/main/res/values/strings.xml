@@ -10,5 +10,14 @@
     <string name="your_notes">Your Notes</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string name="gen_message">Message</string>
+    <string name="gen_title">Title</string>
+    <string name="gen_save">Save</string>
+    <string name="gen_delete">Delete</string>
+    <string name="gen_note_saved">Note saved</string>
+
+    <!--Errors-->
+    <string name="gen_error">Error</string>
+    <string name="error_blank_fields">Don\'t leave blank fields</string>
 
 </resources>

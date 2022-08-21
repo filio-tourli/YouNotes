@@ -60,4 +60,7 @@
     <color name="md_theme_dark_shadow">#000000</color>
     <color name="md_theme_dark_surfaceTint">#4ED8E7</color>
     <color name="md_theme_dark_surfaceTintColor">#4ED8E7</color>
+
+    <color name="grey_400">#bdbdbd</color>
+    <color name="colorGrayLight">#95989A</color>
 </resources>

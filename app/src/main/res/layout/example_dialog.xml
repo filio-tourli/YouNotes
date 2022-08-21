@@ -22,20 +22,92 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:colorBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/txtMessage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <EditText
+            android:id="@+id/edtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_background_white"
+            android:gravity="top"
+            android:hint="@string/gen_title"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
             android:padding="8dp"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            tools:text="@tools:sample/lorem[100]" />
+            android:textColorHint="@color/grey_400"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <EditText
+            android:id="@+id/edtMessage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background_white"
+            android:gravity="top"
+            android:hint="@string/gen_message"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:padding="8dp"
+            android:textColorHint="@color/grey_400"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/fabAddNote"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtTitle"
+            tools:text="@tools:sample/lorem[50]" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabAddNote"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:alpha="0.95"
+            android:backgroundTint="?colorPrimary"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="@string/gen_save"
+            android:textColor="?colorOnPrimary"
+            app:icon="@drawable/baseline_save_24"
+            app:iconTint="?colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fabDeleteNote" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabDeleteNote"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:alpha="0.95"
+            android:backgroundTint="?colorError"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="@string/gen_delete"
+            android:textColor="?colorOnPrimary"
+            app:icon="@drawable/baseline_delete_24"
+            app:iconTint="?colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fabAddNote"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
