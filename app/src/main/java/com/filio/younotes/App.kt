@@ -10,6 +10,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        DynamicColors.applyToActivitiesIfAvailable(this, R.style.AppTheme)
+        DynamicColors.applyToActivitiesIfAvailable(this)
     }
 }
