@@ -6,10 +6,14 @@ import java.time.ZonedDateTime
 
 @Entity(tableName = "notes-table")
 data class NoteItemDB(
-    @PrimaryKey(autoGenerate = false)
-    val id: Int,
     val title: String,
+
     val message: String,
+
     val createdAt: ZonedDateTime,
+
     val editedAt: ZonedDateTime,
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
 )
