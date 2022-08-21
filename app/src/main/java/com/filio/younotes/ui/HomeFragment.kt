@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
 
         binding.toolbar.title = getString(R.string.your_notes)
 
-        binding.fabAddNote.setOnClickListener {
+        binding.fabSaveNote.setOnClickListener {
             AddNoteDialogFragment.display(childFragmentManager)
         }
 

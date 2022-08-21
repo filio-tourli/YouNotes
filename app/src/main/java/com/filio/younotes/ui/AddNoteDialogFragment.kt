@@ -82,7 +82,7 @@ class AddNoteDialogFragment : DialogFragment() {
 
         binding.fabDeleteNote.isVisible = false
 
-        binding.fabAddNote.setOnClickListener {
+        binding.fabSaveNote.setOnClickListener {
             val title = binding.edtTitle.text.toString()
             val message = binding.edtMessage.text.toString()
 
@@ -105,6 +105,28 @@ class AddNoteDialogFragment : DialogFragment() {
         binding.edtTitle.setText(note.title)
         binding.edtMessage.setText(note.message)
 
+        /**
+         * Update the already existent note
+         * */
+        binding.fabSaveNote.setOnClickListener {
+            val noteId = note.id
+            val title = binding.edtTitle.text.toString()
+            val message = binding.edtMessage.text.toString()
+            val oldCreatedAt = note.createdAt
+
+            if (title.isBlank()) {
+                showBlankFieldsError()
+                return@setOnClickListener
+            }
+
+            if (message.isBlank()) {
+                showBlankFieldsError()
+                return@setOnClickListener
+            }
+
+            viewModel.updateNote(title, message, noteId, oldCreatedAt)
+        }
+
         binding.fabDeleteNote.setOnClickListener {
             viewModel.deleteNote(note.id)
         }
@@ -113,6 +135,11 @@ class AddNoteDialogFragment : DialogFragment() {
     private fun handleViewModel() {
         viewModel.viewState.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), getString(R.string.note_saved), Toast.LENGTH_LONG).show()
+            dismiss()
+        }
+
+        viewModel.updateViewState.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), getString(R.string.note_updated), Toast.LENGTH_LONG).show()
             dismiss()
         }
 

@@ -15,6 +15,7 @@ class NotesViewModel @Inject constructor(private val dao: NotesDao) : ViewModel(
 
     val viewState = MutableLiveData<Unit>()
     val deleteViewState = MutableLiveData<Unit>()
+    val updateViewState = MutableLiveData<Unit>()
     val errorState = MutableLiveData<Exception>()
 
     fun createNote(title: String, message: String) {
@@ -30,6 +31,27 @@ class NotesViewModel @Inject constructor(private val dao: NotesDao) : ViewModel(
                 dao.insert(note)
 
                 viewState.postValue(Unit)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                errorState.postValue(e)
+            }
+        }
+    }
+
+    fun updateNote(title: String, message: String, noteId: Int, oldCreatedAt: ZonedDateTime) {
+        viewModelScope.launch {
+            try {
+                val note = NoteItemDB(
+                    title = title,
+                    message = message,
+                    createdAt = oldCreatedAt,
+                    editedAt = ZonedDateTime.now(),
+                    id = noteId
+                )
+
+                dao.update(note)
+
+                updateViewState.postValue(Unit)
             } catch (e: Exception) {
                 e.printStackTrace()
                 errorState.postValue(e)
