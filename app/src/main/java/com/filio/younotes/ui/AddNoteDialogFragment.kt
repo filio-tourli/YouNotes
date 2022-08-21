@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -79,6 +80,8 @@ class AddNoteDialogFragment : DialogFragment() {
     private fun createNoteFlow() {
         binding.toolbar.title = getString(R.string.add_note)
 
+        binding.fabDeleteNote.isVisible = false
+
         binding.fabAddNote.setOnClickListener {
             val title = binding.edtTitle.text.toString()
             val message = binding.edtMessage.text.toString()
@@ -98,14 +101,23 @@ class AddNoteDialogFragment : DialogFragment() {
     }
 
     private fun readNoteFlow(note: NoteItemUI) {
-        binding.toolbar.title = note.title
+        binding.toolbar.title = getString(R.string.edit_note)
         binding.edtTitle.setText(note.title)
         binding.edtMessage.setText(note.message)
+
+        binding.fabDeleteNote.setOnClickListener {
+            viewModel.deleteNote(note.id)
+        }
     }
 
     private fun handleViewModel() {
         viewModel.viewState.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), getString(R.string.gen_note_saved), Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), getString(R.string.note_saved), Toast.LENGTH_LONG).show()
+            dismiss()
+        }
+
+        viewModel.deleteViewState.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), getString(R.string.note_deleted), Toast.LENGTH_LONG).show()
             dismiss()
         }
 
