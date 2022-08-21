@@ -15,6 +15,9 @@ interface NotesDao {
     @Delete
     suspend fun delete(notesItemDB: NoteItemDB)
 
-    @Query("SELECT * FROM 'notes-table'")
+    @Query("Delete from `notes-table` where id = :noteId")
+    suspend fun deleteById(noteId: Int)
+
+    @Query("Select * from 'notes-table'")
     fun fetchAllNotes(): Flow<List<NoteItemDB>>
 }
